@@ -21,6 +21,14 @@ const Logo=()=>{
             width="40"
             src="/logo.svg"
             alt="Logo"
+            className="dark:hidden"
+            />
+            <Image 
+            height="40"
+            width="40"
+            src="/logo-dark.svg"
+            alt="Logo"
+            className="hidden dark:block"
             />
             <span className={cn("font-semibold",font.className)}>Jotion</span>
         </div>

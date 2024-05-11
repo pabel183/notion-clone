@@ -4,7 +4,7 @@ import Heros from "./_components/heros";
 
 const MarketingPage=()=>{
   return (
-    <div className="min-h-full flex flex-col">
+    <div className="min-h-full flex flex-col dark:bg-[#1F1F1F]">
       <div className="
       flex 
       flex-col 
