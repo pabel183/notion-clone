@@ -1,17 +1,19 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from "lucide-react";
+import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 import UserItem from "./user-item";
 import Item from "./item";
 import DocumentList from "./document-list";
+import TrashBox from "./trash-box";
 
 const Navigation=()=>{
 
@@ -143,19 +145,38 @@ const Navigation=()=>{
                 </div>
                 <div>
                     <UserItem />
-                    <Item onClick={handleCreate} label="New Page" icon={PlusCircle}/>
-                    <Item
-                     onClick={()=>{}}
-                     label="Settings" 
-                     icon={Settings}/>
                     <Item
                      onClick={()=>{}}
                      label="Search" 
                      isSearch
                      icon={Search}/>
+                    <Item
+                     onClick={()=>{}}
+                     label="Settings" 
+                     icon={Settings}/>
+                    <Item onClick={handleCreate} label="New Page" icon={PlusCircle}/>
                 </div>
                 <div>
                     <DocumentList />
+                    <Item 
+                    onClick={handleCreate}
+                    label="Add a page"
+                    icon={Plus}
+                    />
+                    <Popover>
+                        <PopoverTrigger className="w-full mt-4">
+                        <Item 
+                        label="Delete"
+                        icon={Trash}
+                        />
+                        </PopoverTrigger>
+                        <PopoverContent
+                        className="p-0 w-72"
+                        side={isMobile?"bottom":"right"}
+                        >
+                        <TrashBox />
+                        </PopoverContent>
+                    </Popover>
                 </div>
                 <div 
                 onMouseDown={handleMouseDown}
