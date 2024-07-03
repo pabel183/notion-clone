@@ -140,7 +140,7 @@ const Item=({
                     text-[10px]
                     opacity-100
                     ">
-                        <span className="text-xs">x</span>K
+                        <span className="text-xs">ctrl</span>K
                     </kbd>
                 )
             }

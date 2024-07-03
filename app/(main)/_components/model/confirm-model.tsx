@@ -1,6 +1,6 @@
 "use client";
 
-import { 
+import {
     AlertDialog,
     AlertDialogTrigger,
     AlertDialogContent,
@@ -10,26 +10,30 @@ import {
 import { AlertDialogAction, AlertDialogCancel, AlertDialogDescription, AlertDialogTitle } from "@radix-ui/react-alert-dialog";
 import React from "react";
 
-interface ConfirmModelProps{
-    children:React.ReactNode;
-    onConfirm:()=>void;
+interface ConfirmModelProps {
+    children: React.ReactNode;
+    onConfirm: () => void;
 }
-const ConfirmModel=({
+const ConfirmModel = ({
     children,
     onConfirm
-}:ConfirmModelProps)=>{
-    const handleConfirm=(event:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
+}: ConfirmModelProps) => {
+    const handleConfirm = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.stopPropagation();
         onConfirm();
     }
-    return(
+    return (
         <AlertDialog>
-            <AlertDialogTrigger asChild onClick={(e)=>e.stopPropagation()}>
+            <AlertDialogTrigger asChild onClick={(e) => e.stopPropagation()}>
                 {children}
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle className="text-neutral-900 font-bold text-lg">
+                    <AlertDialogTitle className="
+                    text-neutral-900
+                    dark:text-neutral-50 
+                    font-bold 
+                    text-lg">
                         Are  you abosolutely sure?
                     </AlertDialogTitle>
                     <AlertDialogDescription className="text-muted-foreground">
@@ -37,10 +41,29 @@ const ConfirmModel=({
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel className="shadow-md rounded-md ring-1 ring-neutral-300 hover:bg-neutral-100 p-2" onClick={(e)=>e.stopPropagation()}>
+                    <AlertDialogCancel className="
+                    drop-shadow-md
+                    rounded-md 
+                    border 
+                    ring-neutral-300 
+                    hover:bg-neutral-100 
+                    dark:bg-neutral-800
+                    dark:text-white
+                    dark:hover:bg-neutral-700
+                    p-2"
+                        onClick={(e) => e.stopPropagation()}>
                         Cancel
                     </AlertDialogCancel>
-                    <AlertDialogAction className="bg-neutral-900 hover:opacity-90 rounded-md p-2 text-white" onClick={handleConfirm}>
+                    <AlertDialogAction className="
+                    bg-neutral-900 
+                    hover:opacity-90 
+                    rounded-md 
+                    p-2 
+                    text-white
+                    dark:bg-white
+                    dark:text-black
+                    "
+                        onClick={handleConfirm}>
                         Confirm
                     </AlertDialogAction>
                 </AlertDialogFooter>

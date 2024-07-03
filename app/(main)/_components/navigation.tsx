@@ -14,6 +14,7 @@ import UserItem from "./user-item";
 import Item from "./item";
 import DocumentList from "./document-list";
 import TrashBox from "./trash-box";
+import { useSearch } from "@/hooks/use-search";
 
 const Navigation=()=>{
 
@@ -26,6 +27,7 @@ const Navigation=()=>{
     const navbarRef=useRef<ElementRef<"div">>(null);
     const [isResetting, setIsResetting]=useState(false);
     const [isCollapsed, setIsCollapsed]=useState(isMobile);
+    const search=useSearch();
 
     useEffect(()=>{
         if(isMobile){
@@ -146,7 +148,7 @@ const Navigation=()=>{
                 <div>
                     <UserItem />
                     <Item
-                     onClick={()=>{}}
+                     onClick={search.onOpen}
                      label="Search" 
                      isSearch
                      icon={Search}/>
