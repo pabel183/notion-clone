@@ -15,6 +15,7 @@ import Item from "./item";
 import DocumentList from "./document-list";
 import TrashBox from "./trash-box";
 import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 
 const Navigation=()=>{
 
@@ -28,6 +29,7 @@ const Navigation=()=>{
     const [isResetting, setIsResetting]=useState(false);
     const [isCollapsed, setIsCollapsed]=useState(isMobile);
     const search=useSearch();
+    const setting=useSettings();
 
     useEffect(()=>{
         if(isMobile){
@@ -153,7 +155,7 @@ const Navigation=()=>{
                      isSearch
                      icon={Search}/>
                     <Item
-                     onClick={()=>{}}
+                     onClick={setting.onOpen}
                      label="Settings" 
                      icon={Settings}/>
                     <Item onClick={handleCreate} label="New Page" icon={PlusCircle}/>
