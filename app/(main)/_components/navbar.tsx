@@ -6,6 +6,8 @@ import { useQuery } from "convex/react";
 import { MenuIcon } from "lucide-react";
 import { useParams } from "next/navigation";
 import Title from "./title";
+import Banner from "./banner";
+import Menu from "./menu";
 
 interface NavbarProps{
     isCollapsed:boolean;
@@ -30,8 +32,12 @@ const Navbar=({
             py-2
             w-full
             flex
+            justify-between
             ">
                 <Title.Skeleton />
+                <div className="flex items-center gap-x-2">
+                    <Menu.Skeleton/>
+                </div>
             </nav>
         );
     }
@@ -57,8 +63,12 @@ const Navbar=({
                 )}
                 <div className="flex justify-between items-center w-full">
                     <Title initialData={document}/>
+                    <Menu documentId={document._id}/>
                 </div>
             </nav>
+                {document.isArchived && (
+                    <Banner documentId={document._id}/>
+                )}
         </>
     );
 }
