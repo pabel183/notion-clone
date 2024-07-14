@@ -87,7 +87,7 @@ export const create=mutation({
             userId,
             parentDocument:args.parentDcoument,
             isArchived:false,
-            isPublised:false,
+            isPublished:false,
         })
 
         return document;
@@ -220,7 +220,7 @@ export const getById=query({
         if(!document){
             throw new Error("Not found");
         }
-        if(document.isPublised && !document.isArchived){
+        if(document.isPublished && !document.isArchived){
             return document;
         }
         if(!identity) {
@@ -285,4 +285,28 @@ export const removeIcon=mutation({
 
         return document;
     }
-})
+});
+
+export const removeCoverImage=mutation({
+    args:{
+        id:v.id("documents"),
+    },
+    handler:async(ctx,args)=>{
+        const identity=await ctx.auth.getUserIdentity();
+        if(!identity){
+            throw new Error("Not authenticated");
+        } 
+        const existingDocument=await ctx.db.get(args.id)
+        if(!existingDocument){
+            throw new Error("Not found");
+        }
+        const userId=identity.subject;
+        if(existingDocument.userId!==userId){
+            throw new Error("Unauthenticated");
+        }
+        const document=await ctx.db.patch(args.id,{
+            coverImage:undefined
+        });
+        return document;
+    }
+});
