@@ -120,7 +120,7 @@ const Item=({
                     {documentIcon}
                 </div>
             ):(
-                <Icon className="h-[18px] text-muted-foreground shrink-0 mr-2"/>
+                <Icon className="h-[18px] w-[18px] text-muted-foreground shrink-0 mr-2"/>
             )
             }
             <span className="truncate">{label}</span>
